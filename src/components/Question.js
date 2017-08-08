@@ -7,7 +7,7 @@ import React, {Component} from 'react';
     const Question = (props) => {
         return (
             <div>
-                question
+                {props.content}
             </div>
         )
         };
