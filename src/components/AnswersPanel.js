@@ -15,7 +15,7 @@ import React, {Component} from 'react';
                 {
                 props.answers.map(a => {
                     return (
-                        <button value={a.id} onClick={handleAnswerClick}>{a.answer}</button>
+                        <button value={a.points} onClick={handleAnswerClick}>{a.answer}</button>
                     )
                 })
                 }

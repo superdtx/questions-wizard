@@ -7,7 +7,7 @@ import React, {Component} from 'react';
     const Header = (props) => {
         return (
             <div>
-                <button>previous</button>
+                <button onClick={props.handleGoBack}>prev</button>
             </div>
         )
         };
