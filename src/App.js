@@ -56,7 +56,7 @@ class App extends Component {
     }
 
     goBack(){
-        const {currentQuestionId, questionList} = this.state;
+        const {currentQuestionId} = this.state;
             if(currentQuestionId > 1){
                 this.setState({
                     currentQuestionId: currentQuestionId - 1
