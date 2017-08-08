@@ -5,13 +5,17 @@
 import React, {Component} from 'react';
 
     const AnswerPanel = (props) => {
+        function handleAnswerClick(e){
+            console.log('answerpanel', e.target.value);
+            props.handleAnswerClick(e.target.value);
+        }
 
         return (
             <div>
                 {
                 props.answers.map(a => {
                     return (
-                        <button>{a.answer}</button>
+                        <button value={a.id} onClick={handleAnswerClick}>{a.answer}</button>
                     )
                 })
                 }
