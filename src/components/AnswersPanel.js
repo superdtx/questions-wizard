@@ -8,7 +8,13 @@ import React, {Component} from 'react';
 
         return (
             <div>
-                answers
+                {
+                props.answers.map(a => {
+                    return (
+                        <button>{a.answer}</button>
+                    )
+                })
+                }
             </div>
         )
         };

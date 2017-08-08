@@ -19,19 +19,24 @@ class App extends Component {
             })
         }
     }
-    render() {
+    findCurrentQuestionContent(){
         const {questionData} = this.props;
-        console.log(this.props);
-        console.log(this.state);
         const {currentQuestionId} = this.state;
-        console.log(currentQuestionId);
-        const currentQuestion = questionData.find(qd => qd.id = currentQuestionId);
-        console.log(currentQuestion);
+        return questionData.find(qd => qd.id === currentQuestionId).content;
+    }
+
+    getCurrentAnswers(){
+        const {questionData} = this.props;
+        const {currentQuestionId} = this.state;
+        return questionData.find(qd => qd.id === currentQuestionId).answers;
+    }
+
+    render() {
         return (
-            <div className="App">
-                <Header/>
-                <Question content={currentQuestion.content}/>
-                <AnswerPanel/>
+        <div className="App">
+            <Header/>
+            <Question content={this.findCurrentQuestionContent()} />
+            <AnswerPanel answers ={this.getCurrentAnswers()}/>
             </div>
         );
     }
