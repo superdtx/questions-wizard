@@ -7,9 +7,9 @@ import React, {Component} from 'react';
     const Question = (props) => {
         return (
             <div>
-                {props.question.title}-{props.question.content}
+                {props.title}-{props.content}
             </div>
         )
-        };
+    };
 
-    export default Question;
+export default Question;
