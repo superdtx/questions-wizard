@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Header from '../src/components/Header';
-import Question from '../src/components/Question';
-import AnswersPanel from '../src/components/AnswersPanel';
+import Dashboard from '../src/components/Dashboard';
 import {data} from '../src/data/questions';
 
 class App extends Component {
@@ -12,7 +11,8 @@ class App extends Component {
         this.state = {
             currentQuestionId: 1,
             currentQuestion: props.questionData.filter(question=>{return question.id === 1})[0],
-            point: []
+            point: [],
+            readyForResult: false
         }
     }
 
@@ -24,7 +24,8 @@ class App extends Component {
             this.setState({
                 currentQuestionId: currentQuestionId - 1,
                 currentQuestion: questionData.filter(question=>{return question.id === currentQuestionId-1})[0],
-                point: this.state.point.slice(this.state.point.length-1, this.state.point.length)
+                point: this.state.point.slice(0, this.state.point.length-1),
+                readyForResult: (currentQuestionId - 1 === 4)
             })
         }
     }
@@ -33,11 +34,12 @@ class App extends Component {
         const { currentQuestionId } = this.state;
         const {questionData} = this.props;
 
-        if (currentQuestionId < questionData.length+1) {
+        if (currentQuestionId < questionData.length + 1) {
             this.setState({
                 currentQuestionId: currentQuestionId + 1,
                 currentQuestion: questionData.filter(question=>{return question.id === currentQuestionId+1})[0],
-                point: this.state.point.concat([pt])
+                point: this.state.point.concat([pt]),
+                readyForResult: (currentQuestionId + 1 === 4)
             })
         }
     }
@@ -45,11 +47,10 @@ class App extends Component {
     render() {
         
         return (
-        <div className="App">
-            <Header handleGoBack={this.goBack.bind(this)}/>
-            <Question title={this.state.currentQuestion.title} content={this.state.currentQuestion.content}/>
-            <AnswersPanel answers={this.state.currentQuestion.answers} handleSelectAnwser={this.handleSelectAnwser.bind(this)}/>
-        </div>
+            <div className="App">
+                <Header handleGoBack={this.goBack.bind(this)}/>
+                <Dashboard state={this.state} handleSelectAnwser={this.handleSelectAnwser.bind(this)}/>
+            </div>
         );
     }
 }
