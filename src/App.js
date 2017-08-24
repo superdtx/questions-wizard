@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Header from '../src/components/Header';
 import Question from '../src/components/Question';
@@ -24,6 +24,7 @@ class App extends Component {
         const {currentQuestionId, questionList} = this.state;
         const isEndOfTest = currentQuestionId > questionList.length ? true : false;
         let total = 0;
+        // eslint-disable-next-line
         questionList.forEach(q => {total += parseInt(q.points)});
         const question = !isEndOfTest ?
             questionData.find(qd => qd.id === currentQuestionId) :
